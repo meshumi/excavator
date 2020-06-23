@@ -12,8 +12,11 @@ gem 'jbuilder', '~> 2.7'
 gem 'haml'
 gem 'pg'
 gem 'gmaps4rails'
+gem 'rgeo'
 
 group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'awesome_print'
@@ -32,6 +35,7 @@ group :development do
 end
 
 group :test do
+  gem 'ffaker'
   gem 'capybara', '>= 2.15'
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
