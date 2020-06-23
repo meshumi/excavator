@@ -13,6 +13,8 @@ gem 'haml'
 gem 'pg'
 gem 'gmaps4rails'
 gem 'rgeo'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'responders'
 
 group :development, :test do
   gem 'rspec'

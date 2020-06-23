@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Ticket < ApplicationRecord
+  # include ActiveModel::Serializers::JSON
   has_one :excavator
 
   validates :request_number, :sequence_number, :request_type, :response_due_date_time,

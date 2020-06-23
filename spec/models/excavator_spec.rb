@@ -7,5 +7,8 @@ RSpec.describe Excavator, type: :model do
 
   it { expect(subject).to validate_presence_of(:company_name) }
   it { expect(subject).to validate_presence_of(:address) }
+  it { expect(subject).to validate_presence_of(:city) }
+  it { expect(subject).to validate_presence_of(:state) }
+  it { expect(subject).to validate_presence_of(:zip) }
   it { expect(subject).to validate_presence_of(:crew_on_site) }
 end
