@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_06_23_070620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "excavators", force: :cascade do |t|
+    t.text "company_name"
+    t.string "address"
+    t.boolean "crew_on_site", default: false
+    t.bigint "ticket_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ticket_id"], name: "index_excavators_on_ticket_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "request_number"
+    t.string "sequence_number"
+    t.string "request_type"
+    t.datetime "response_due_date_time"
+    t.string "primary_area_sa_code"
+    t.text "additional_area_sa_codes", default: [], array: true
+    t.text "well_known_text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "excavators", "tickets"
 end
