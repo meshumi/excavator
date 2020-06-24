@@ -1,0 +1,21 @@
+%table.table
+  %thead
+    %tr
+      %th{:scope => "col"}
+        = I18n.t(:link_to_ticket)
+      %th{:scope => "col"}
+        = I18n.t(:request_number)
+      %th{:scope => "col"}
+        = I18n.t(:sequence_number)
+      %th{:scope => "col"}
+        = I18n.t(:request_type)
+      %th{:scope => "col"}
+        = I18n.t(:response_due_date_time)
+      %th{:scope => "col"}
+        = I18n.t(:primary_area_sa_code)
+      %th{:scope => "col"}
+        = I18n.t(:additional_area_sa_code)
+  %tbody
+    = render(@tickets)
+
+= paginate @tickets

@@ -1,0 +1,15 @@
+%tr
+  %th
+    = link_to I18n.t(:go_to_ticket, ticket_id: ticket.id), ticket_path(ticket)
+  %th
+    = ticket.request_number
+  %td
+    = ticket.sequence_number
+  %td
+    = ticket.request_type
+  %td
+    = ticket.response_due_date_time
+  %td
+    = ticket.primary_area_sa_code
+  %td
+    = ticket.additional_area_sa_codes

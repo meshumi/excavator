@@ -1,0 +1,37 @@
+%h4
+  = link_to I18n.t(:go_back), root_path
+%br
+
+.text-center
+  %h3
+    = t(:ticket_dig_site_info)
+
+  %div.d-inline-block{style: 'width: 800px;'}
+    #map{style: 'width: 800px; height: 600px;'}
+
+%br
+%br
+%h3.text-center
+  = I18n.t(:excavator_information)
+%table.table
+  %thead
+    %tr
+      %th
+        = I18n.t(:company_name)
+      %th
+        = I18n.t(:address)
+      %th
+        = I18n.t(:crew_on_site)
+  %tbody
+    %tr
+      %th
+        = @excavator.company_name
+      %th
+        = @excavator.full_address
+      %th
+        = @excavator.crew_on_site
+
+:javascript
+  $(document).ready(function() {
+    printMap(#{raw @geo_json})
+  })
