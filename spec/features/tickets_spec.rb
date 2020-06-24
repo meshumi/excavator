@@ -19,7 +19,7 @@ feature 'Tickets' do
   scenario 'visit to ticket' do
     click_link(I18n.t(:go_to_ticket, ticket_id: ticket.id))
 
-    expect(page).to have_link(I18n.t(:go_back), href: root_path )
+    expect(page).to have_link(I18n.t(:go_back), href: root_path)
     expect(page).to have_css('#map')
     expect(page.has_text?(excavator.company_name)).to be_truthy
     expect(page.has_text?(excavator.full_address)).to be_truthy

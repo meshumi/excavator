@@ -6,7 +6,7 @@ describe ErrorSerializer do
   let(:ticket) { build(:ticket, request_number: nil) }
   let(:expected_result) do
     {
-      errors: [{ source: { pointer: "/data/attributes/tickets/request_number" }, detail: "can't be blank" }]
+      errors: [{ source: { pointer: '/data/attributes/tickets/request_number' }, detail: "can't be blank" }]
     }
   end
 
