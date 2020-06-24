@@ -1,0 +1,88 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    working_directory: ~/test_excavator
+    docker:
+      - image: circleci/ruby:2.6.4-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: ubuntu
+          RAILS_ENV: test
+          PARALLEL_WORKERS: "1"
+      - image: circleci/postgres:12.2
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: bookstore_test
+          POSTGRES_PASSWORD: ""
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run:
+          name: Install bundle
+          command: gem install bundler:1.17.3
+
+      - run:
+          name: Install gem dependencies
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Set up DB
+          command: |
+            cp config/database.sample.yml config/database.yml
+            bundle exec rake db:create
+            bundle exec rake db:schema:load --trace
+            bundle exec rake db:migrate
+      - run:
+          name: run tests
+          command: |
+            mkdir test-results
+            bundle exec rspec --profile 10 \
+                              --out test-results/rspec/rspec.xml \
+                              --format documentation \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: test-results
+
+      - run:
+          name: Running Ruby Linter
+          environment:
+            - RAILS_ENV: test
+            - RACK_ENV: test
+          command: |
+            mkdir -p /tmp/rubocop
+            bundle exec rubocop --config ./config/linters/ruby.yml \
+                                --require $(bundle show rubocop-junit-formatter)/lib/rubocop/formatter/junit_formatter.rb \
+                                --format RuboCop::Formatter::JUnitFormatter \
+                                --out /tmp/rubocop/results.xml \
+                                --format=progress
+      - store_test_results:
+          path: /tmp/rubocop
+      - store_artifacts:
+          path: /tmp/rubocop
+          destination: rubocop
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build
