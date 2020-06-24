@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,35 +12,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_135651) do
-
+ActiveRecord::Schema.define(version: 20_200_623_135_651) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "excavators", force: :cascade do |t|
-    t.text "company_name"
-    t.string "address"
-    t.boolean "crew_on_site", default: false
-    t.bigint "ticket_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "city"
-    t.string "state"
-    t.string "zip"
-    t.index ["ticket_id"], name: "index_excavators_on_ticket_id"
+  create_table 'excavators', force: :cascade do |t|
+    t.text 'company_name'
+    t.string 'address'
+    t.boolean 'crew_on_site', default: false
+    t.bigint 'ticket_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'city'
+    t.string 'state'
+    t.string 'zip'
+    t.index ['ticket_id'], name: 'index_excavators_on_ticket_id'
   end
 
-  create_table "tickets", force: :cascade do |t|
-    t.string "request_number"
-    t.string "sequence_number"
-    t.string "request_type"
-    t.datetime "response_due_date_time"
-    t.string "primary_area_sa_code"
-    t.text "additional_area_sa_codes", default: [], array: true
-    t.text "well_known_text"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'tickets', force: :cascade do |t|
+    t.string 'request_number'
+    t.string 'sequence_number'
+    t.string 'request_type'
+    t.datetime 'response_due_date_time'
+    t.string 'primary_area_sa_code'
+    t.text 'additional_area_sa_codes', default: [], array: true
+    t.text 'well_known_text'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  add_foreign_key "excavators", "tickets"
+  add_foreign_key 'excavators', 'tickets'
 end

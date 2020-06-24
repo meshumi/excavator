@@ -9,15 +9,15 @@ class Ticket < ApplicationRecord
             :primary_area_sa_code, :well_known_text, presence: true
 
   def well_known_text_format
-    begin
-      factory.srid.present?
-    rescue RGeo::Error::ParseError
-      errors.add(:well_known_text, I18n.t(:invalid_wkt_format, scope: :errors))
-    end
+    factory.srid.present?
+  rescue RGeo::Error::ParseError
+    errors.add(:well_known_text, I18n.t(:invalid_wkt_format, scope: :errors))
   end
 
   def geometry_type
-    errors.add(:well_known_text, I18n.t(:muts_be_polygon, scope: :errors)) unless factory.geometry_type.eql?(RGeo::Feature::Polygon)
+    unless factory.geometry_type.eql?(RGeo::Feature::Polygon)
+      errors.add(:well_known_text, I18n.t(:muts_be_polygon, scope: :errors))
+    end
   end
 
   private

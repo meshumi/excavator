@@ -20,12 +20,12 @@ describe ExcavatorSerializer do
 
   def excavator_attributes(excavator)
     {
-      id:           excavator.id,
+      id: excavator.id,
       company_name: excavator.company_name,
-      address:      excavator.address,
-      city:         excavator.city,
-      state:        excavator.state,
-      zip:          excavator.zip,
+      address: excavator.address,
+      city: excavator.city,
+      state: excavator.state,
+      zip: excavator.zip,
       crew_on_site: excavator.crew_on_site
     }
   end

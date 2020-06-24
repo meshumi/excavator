@@ -2,7 +2,7 @@
 
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'factory_bot'
@@ -43,9 +43,8 @@ RSpec.configure do |config|
     conf.syntax = :expect
   end
 
-  config.before(:each) do |example|
+  config.before(:each) do |_example|
     Bullet.start_request if Bullet.enable?
-
   end
 
   config.before(:all) do
@@ -59,7 +58,6 @@ RSpec.configure do |config|
     end
   end
 end
-
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
