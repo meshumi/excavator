@@ -23,6 +23,7 @@ gem 'rgeo-geojson'
 gem 'sass-rails', '>= 6'
 gem 'underscore-rails'
 gem 'webpacker', '~> 4.0'
+gem 'apipie-rails'
 
 group :development, :test do
   gem 'awesome_print'

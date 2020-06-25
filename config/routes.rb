@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  apipie
   root to: 'tickets#index'
 
   resources :tickets, only: %i[index show]
