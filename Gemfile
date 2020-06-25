@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.4'
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'apipie-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'coffee-rails'
 gem 'gmaps4rails'

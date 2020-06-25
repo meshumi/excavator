@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Api::V1::TicketsController < Api::V1::ApiController
+  extend Api::V1::Documentation::TicketsDoc
+
+  create_doc
   def create
     @form = TicketForm.new(params.dup.to_h)
 

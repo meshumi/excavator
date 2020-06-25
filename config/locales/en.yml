@@ -2,6 +2,7 @@ en:
   errors:
     invalid_wkt_format: "has an invalid format"
     muts_be_polygon: Value must be a correct POLYGOT WKT
+    unprocessable_entity: Unprocessable Entity
   request_number: Request Number
   sequence_number: Sequence Number
   request_type: Request Type
@@ -16,3 +17,4 @@ en:
   go_back: Go to main page
   ticket_dig_site_info: Ticket Dig Site Info
   go_to_ticket: 'Go to ticket #%{ticket_id}'
+  post_tickets_desc: 'Create ticket with excavator'
