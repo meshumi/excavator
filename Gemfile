@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.4'
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'apipie-rails'
 gem 'bootstrap', '~> 4.5.0'
 gem 'coffee-rails'
 gem 'gmaps4rails'
@@ -23,7 +24,6 @@ gem 'rgeo-geojson'
 gem 'sass-rails', '>= 6'
 gem 'underscore-rails'
 gem 'webpacker', '~> 4.0'
-gem 'apipie-rails'
 
 group :development, :test do
   gem 'awesome_print'
