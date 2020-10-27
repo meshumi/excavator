@@ -21,7 +21,7 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'responders'
 gem 'rgeo'
 gem 'rgeo-geojson'
-gem 'sass-rails', '>= 6'
+gem 'sass-rails'
 gem 'underscore-rails'
 gem 'webpacker', '~> 4.0'
 
